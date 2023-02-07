@@ -5,7 +5,9 @@ const User = require('../../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-
+/**
+ * @description Register user route
+ */
 router.post('/', [
     check('name', 'Name is required').not().isEmpty(),
     check('email', 'Please incude a valid email').isEmail(),
