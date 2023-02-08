@@ -106,4 +106,30 @@ router.delete('/:id', auth, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+/**
+ * @route api/posts/like/:id
+ * @description Like a post
+ */
+
+router.put('/like/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        console.log(post)
+        //check if the post is already been liked
+        if (post.likes.some((like) => like.user.toString() === req.user.id)) {
+            return res.status(400).json({ msg: 'Post already liked' });
+        }
+
+        post.likes.unshift({ user: req.user.id });
+
+        await post.save();
+
+        return res.json(post.likes);
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+})
 module.exports = router;
