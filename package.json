@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "ui": "npm start --prefix ui",
+    "dev": "concurrently \"npm run server\" \"npm run ui\""
   },
   "author": "Mangesh Sharma",
   "license": "ISC",
