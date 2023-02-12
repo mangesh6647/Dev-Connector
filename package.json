@@ -12,6 +12,7 @@
   "author": "Mangesh Sharma",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.3.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.9",
