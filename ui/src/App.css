@@ -170,7 +170,7 @@ img {
   color: #333;
   animation-name: example;
   animation-duration: 5s;
-  border-radius: 45%;
+  border-radius: 15px 50px;
 }
 
 .alert-wrapper {
