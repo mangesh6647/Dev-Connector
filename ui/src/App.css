@@ -168,6 +168,20 @@ img {
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
+  /* animation-name: example;
+  animation-duration: 4s; */
+  border-radius: 45%;
+}
+
+.alert-wrapper {
+  position: relative;
+  top: 4rem;
+  right: 2rem;
+  max-width: 650px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  text-align: center;
 }
 
 .btn-primary,
@@ -252,6 +266,16 @@ img {
 .form .form-group {
   margin: 1.2rem 0;
 }
+
+/* @keyframes example {
+  from {
+    background-color: #c4302b;
+  }
+
+  to {
+    background-color: white;
+  }
+} */
 
 .form .form-text {
   display: block;
