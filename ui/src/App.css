@@ -168,8 +168,8 @@ img {
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
-  /* animation-name: example;
-  animation-duration: 4s; */
+  animation-name: example;
+  animation-duration: 5s;
   border-radius: 45%;
 }
 
@@ -267,15 +267,15 @@ img {
   margin: 1.2rem 0;
 }
 
-/* @keyframes example {
+@keyframes example {
   from {
-    background-color: #c4302b;
+    opacity: 1;
   }
 
   to {
-    background-color: white;
+    opacity: 0;
   }
-} */
+}
 
 .form .form-text {
   display: block;
