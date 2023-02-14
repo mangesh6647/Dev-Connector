@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
@@ -10,8 +10,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Import related to redux store
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token)
+}
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, []);
   return (
     <Provider store={store}>
       <BrowserRouter>
