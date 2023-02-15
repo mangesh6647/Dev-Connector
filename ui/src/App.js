@@ -5,7 +5,9 @@ import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
+import Dashboard from './components/dashboard/Dashboard'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/routing/PrivateRoute'
 
 // Import related to redux store
 import { Provider } from 'react-redux';
@@ -31,6 +33,7 @@ function App() {
           <Route exact path='/' element={<Landing />} />
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/login' element={<Login />} />
+          <Route exact path='/dashboard' element={<PrivateRoute component={Dashboard} />} />
         </Routes>
 
       </BrowserRouter>
