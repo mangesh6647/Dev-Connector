@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { Link, useMatch, useNavigate } from 'react-router-dom';
 
 const initialState = {
@@ -19,9 +19,29 @@ const initialState = {
     instagram: ''
 };
 
-function CreateProfile({ createProfile }) {
+function EditProfile({ profile: { profile, loading }, createProfile, getCurrentProfile }) {
     const [formData, setFormData] = useState(initialState);
     const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
+    useEffect(() => {
+        getCurrentProfile();
+
+        if (!loading && profile) {
+            const profileData = { ...initialState };
+            for (const key in profile) {
+                if (key in profileData) profileData[key] = profile[key];
+            }
+            for (const key in profile.social) {
+                if (key in profileData) profileData[key] = profile.social[key];
+            }
+            // the skills may be an array from our API response
+            if (Array.isArray(profileData.skills))
+                profileData.skills = profileData.skills.join(', ');
+            // set local state with the profileData
+            setFormData(profileData);
+        }
+    }, [loading]);
+
     const {
         company,
         website,
@@ -44,7 +64,7 @@ function CreateProfile({ createProfile }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        createProfile(formData, navigate);
+        createProfile(formData, navigate, true);
     };
     return (
         <section className="container">
@@ -157,9 +177,15 @@ function CreateProfile({ createProfile }) {
 //     profile: state.profile
 // }); */}
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
     createProfile: PropTypes.func.isRequired,
-
+    profile: PropTypes.object.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired
 };
 
-export default connect(null, { createProfile })(CreateProfile);
+const mapStateToProps = (state) => ({
+    profile: state.profile
+});
+
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(EditProfile);

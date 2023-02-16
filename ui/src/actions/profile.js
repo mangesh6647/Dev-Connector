@@ -40,6 +40,7 @@ export const createProfile = (formData, navigate, edit = false) => async (dispat
         dispatch(
             setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success')
         );
+        scrollToTop();
         if (!edit) {
             navigate('/dashboard');
         }
