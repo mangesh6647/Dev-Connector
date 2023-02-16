@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { setAlert } from './alert';
+//import { setAlert } from './alert';
 import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, ACCOUNT_DELETED, CLEAR_PROFILE } from './types';
-import { scrollToTop } from '../utils/scrollToTop';
+//import { scrollToTop } from '../utils/scrollToTop';
+import { errorToaster, successToaster, infoToaster } from '../utils/Toaster';
 
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -37,10 +38,11 @@ export const createProfile = (formData, navigate, edit = false) => async (dispat
             payload: res.data
         });
 
-        dispatch(
-            setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success')
-        );
-        scrollToTop();
+        // dispatch(
+        //     setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success')
+        // );
+        // scrollToTop();
+        successToaster(edit ? 'Profile Updated' : 'Profile Created');
         if (!edit) {
             navigate('/dashboard');
         }
@@ -48,9 +50,10 @@ export const createProfile = (formData, navigate, edit = false) => async (dispat
         const errors = err.response.data.errors;
 
         if (errors) {
-            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            //errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            errors.forEach((error) => errorToaster(error.msg));
         }
-        scrollToTop();
+        //scrollToTop();
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -76,10 +79,12 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
             payload: res.data
         });
 
-        scrollToTop();
-        dispatch(
-            setAlert('Experience Added', 'success')
-        );
+        // scrollToTop();
+        // dispatch(
+        //     setAlert('Experience Added', 'success')
+        // );
+
+        successToaster('Experience Added');
 
         navigate('/dashboard');
 
@@ -87,9 +92,10 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
         const errors = err.response.data.errors;
 
         if (errors) {
-            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            //errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            errors.forEach((error) => errorToaster(error.msg));
         }
-        scrollToTop();
+        //scrollToTop();
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -113,10 +119,11 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
             payload: res.data
         });
 
-        scrollToTop();
-        dispatch(
-            setAlert('Education Added', 'success')
-        );
+        // scrollToTop();
+        // dispatch(
+        //     setAlert('Education Added', 'success')
+        // );
+        successToaster('Education Added');
 
 
         navigate('/dashboard');
@@ -125,9 +132,10 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
         const errors = err.response.data.errors;
 
         if (errors) {
-            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            //errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            errors.forEach((error) => errorToaster(error.msg));
         }
-        scrollToTop();
+        //scrollToTop();
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -145,8 +153,9 @@ export const deleteExperience = (id) => async (dispatch) => {
             payload: res.data
         });
 
-        scrollToTop();
-        dispatch(setAlert('Experience Removed', 'success'));
+        //scrollToTop();
+        //dispatch(setAlert('Experience Removed', 'success'));
+        successToaster('Experience Removed');
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
@@ -165,8 +174,9 @@ export const deleteEducation = (id) => async (dispatch) => {
             payload: res.data
         });
 
-        scrollToTop();
-        dispatch(setAlert('Education Removed', 'success'));
+        //scrollToTop();
+        //dispatch(setAlert('Education Removed', 'success'));
+        successToaster('Education Removed');
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
@@ -185,8 +195,9 @@ export const deleteAccount = () => async (dispatch) => {
             dispatch({ type: CLEAR_PROFILE });
             dispatch({ type: ACCOUNT_DELETED });
 
-            scrollToTop();
-            dispatch(setAlert('Your account has been permanently deleted', 'success'));
+            //scrollToTop();
+            //dispatch(setAlert('Your account has been permanently deleted', 'success'));
+            infoToaster('Your account has been permanently deleted');
         } catch (err) {
             dispatch({
                 type: PROFILE_ERROR,

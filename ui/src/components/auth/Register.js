@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
+//import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import { errorToaster } from '../../utils/Toaster';
 
-function Register({ setAlert, register, isAuthenticated }) {
+
+//function Register({ setAlert, register, isAuthenticated })
+
+function Register({ register, isAuthenticated }) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,7 +24,8 @@ function Register({ setAlert, register, isAuthenticated }) {
     const onSubmit = async e => {
         e.preventDefault();
         if (password !== password2) {
-            setAlert("Password do not match", 'danger');
+            //setAlert("Password do not match", 'danger');
+            errorToaster('Password do not match');
         }
         else {
             register({ name, email, password });
@@ -77,7 +82,7 @@ function Register({ setAlert, register, isAuthenticated }) {
 }
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired,
+    //setAlert: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool
 }
@@ -85,5 +90,5 @@ Register.propTypes = {
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated
 });
-
-export default connect(mapStateToProps, { setAlert, register })(Register);
+//Add setAlert in below line to use custom toatser
+export default connect(mapStateToProps, { register })(Register);

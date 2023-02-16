@@ -9,8 +9,9 @@ import {
     LOGOUT,
     CLEAR_PROFILE
 } from './types';
-import { setAlert } from './alert';
+//import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken'
+import { errorToaster } from '../utils/Toaster';
 //Load User
 
 export const loadUser = () => async (dispatch) => {
@@ -52,7 +53,8 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
         const errors = error.response.data.errors;
         if (errors) {
-            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            // errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            errors.forEach((error) => errorToaster(error.msg));
         }
         dispatch({
             type: REGISTER_FAIL
@@ -83,7 +85,9 @@ export const login = (email, password) => async (dispatch) => {
         const errors = err.response.data.errors;
 
         if (errors) {
-            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            //errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+            errors.forEach((error) => errorToaster(error.msg));
+
         }
 
         dispatch({

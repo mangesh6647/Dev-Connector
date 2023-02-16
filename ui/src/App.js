@@ -12,6 +12,8 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
+//import for toaster
+import { ToastContainer } from 'react-toastify';
 
 // Import related to redux store
 import { Provider } from 'react-redux';
@@ -43,7 +45,7 @@ function App() {
           <Route exact path='/add-experience' element={<PrivateRoute component={AddExperience} />} />
           <Route exact path='/add-education' element={<PrivateRoute component={AddEducation} />} />
         </Routes>
-
+        <ToastContainer />
       </BrowserRouter>
     </Provider>
   );
