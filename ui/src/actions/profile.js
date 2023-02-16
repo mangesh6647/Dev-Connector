@@ -76,6 +76,7 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
             payload: res.data
         });
 
+        scrollToTop();
         dispatch(
             setAlert('Experience Added', 'success')
         );
@@ -112,9 +113,11 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
             payload: res.data
         });
 
+        scrollToTop();
         dispatch(
             setAlert('Education Added', 'success')
         );
+
 
         navigate('/dashboard');
 
