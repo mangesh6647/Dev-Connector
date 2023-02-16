@@ -10,6 +10,8 @@ import CreateProfile from './components/profile-forms/CreateProfile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute'
 import EditProfile from './components/profile-forms/EditProfile';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
 
 // Import related to redux store
 import { Provider } from 'react-redux';
@@ -38,6 +40,8 @@ function App() {
           <Route exact path='/dashboard' element={<PrivateRoute component={Dashboard} />} />
           <Route exact path='/create-profile' element={<PrivateRoute component={CreateProfile} />} />
           <Route exact path='/edit-profile' element={<PrivateRoute component={EditProfile} />} />
+          <Route exact path='/add-experience' element={<PrivateRoute component={AddExperience} />} />
+          <Route exact path='/add-education' element={<PrivateRoute component={AddEducation} />} />
         </Routes>
 
       </BrowserRouter>
