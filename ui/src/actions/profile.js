@@ -6,6 +6,7 @@ import { errorToaster, successToaster, infoToaster } from '../utils/Toaster';
 
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
+    dispatch({ type: CLEAR_PROFILE });
     try {
         const res = await axios.get('/api/profile/me');
 
