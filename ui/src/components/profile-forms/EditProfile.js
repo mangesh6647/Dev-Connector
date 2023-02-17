@@ -40,7 +40,7 @@ function EditProfile({ profile: { profile, loading }, createProfile, getCurrentP
             // set local state with the profileData
             setFormData(profileData);
         }
-    }, [loading]);
+    }, [loading, getCurrentProfile]);
 
     const {
         company,

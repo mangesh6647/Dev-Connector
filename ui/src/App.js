@@ -12,6 +12,7 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
+import Profiles from './components/profiles/Profiles';
 //import for toaster
 import { ToastContainer } from 'react-toastify';
 
@@ -39,11 +40,13 @@ function App() {
           <Route exact path='/' element={<Landing />} />
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/login' element={<Login />} />
+          <Route exact path='/profiles' element={<Profiles />} />
           <Route exact path='/dashboard' element={<PrivateRoute component={Dashboard} />} />
           <Route exact path='/create-profile' element={<PrivateRoute component={CreateProfile} />} />
           <Route exact path='/edit-profile' element={<PrivateRoute component={EditProfile} />} />
           <Route exact path='/add-experience' element={<PrivateRoute component={AddExperience} />} />
           <Route exact path='/add-education' element={<PrivateRoute component={AddEducation} />} />
+
         </Routes>
         <ToastContainer />
       </BrowserRouter>
