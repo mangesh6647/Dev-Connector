@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Developer from './Developer.jpg';
 
 function ProfileItem({
     profile: {
@@ -13,7 +14,7 @@ function ProfileItem({
 }) {
     return (
         <div className='profile bg-light'>
-            <img src={''} alt='No Image' className='round-img' />
+            <img src={Developer} alt='No Image' className='round-img' />
             <div>
                 <h2>{name}</h2>
                 <p>
