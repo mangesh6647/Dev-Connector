@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Developer from './Developer.jpg';
+import Developer from '../../img/Developer.jpg';
 
 function ProfileItem({
     profile: {

@@ -13,6 +13,7 @@ import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile'
 //import for toaster
 import { ToastContainer } from 'react-toastify';
 
@@ -41,6 +42,7 @@ function App() {
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/profiles' element={<Profiles />} />
+          <Route exact path='/profile/:id' element={<Profile />} />
           <Route exact path='/dashboard' element={<PrivateRoute component={Dashboard} />} />
           <Route exact path='/create-profile' element={<PrivateRoute component={CreateProfile} />} />
           <Route exact path='/edit-profile' element={<PrivateRoute component={EditProfile} />} />
