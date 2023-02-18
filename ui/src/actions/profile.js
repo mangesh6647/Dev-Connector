@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, ACCOUNT_DELETED, CLEAR_PROFILE, GET_PROFILES, GET_REPOS, NO_REPOS } from './types';
 //import { scrollToTop } from '../utils/scrollToTop';
 import { errorToaster, successToaster, infoToaster } from '../utils/Toaster';
+import confirmDialog from '../utils/ConfirmAlert';
 
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -197,16 +198,20 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
 // Delete experience
 export const deleteExperience = (id) => async (dispatch) => {
     try {
-        const res = await axios.delete(`/api/profile/experience/${id}`);
+        const confirmResult = await confirmDialog('Are you sure?');
+        if (confirmResult) {
+            const res = await axios.delete(`/api/profile/experience/${id}`);
 
-        dispatch({
-            type: UPDATE_PROFILE,
-            payload: res.data
-        });
+            dispatch({
+                type: UPDATE_PROFILE,
+                payload: res.data
+            });
 
-        //scrollToTop();
-        //dispatch(setAlert('Experience Removed', 'success'));
-        successToaster('Experience Removed');
+            //scrollToTop();
+            //dispatch(setAlert('Experience Removed', 'success'));
+            successToaster('Experience Removed');
+        }
+
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
@@ -218,16 +223,20 @@ export const deleteExperience = (id) => async (dispatch) => {
 // Delete education
 export const deleteEducation = (id) => async (dispatch) => {
     try {
-        const res = await axios.delete(`/api/profile/education/${id}`);
+        const confirmResult = await confirmDialog('Are you sure?');
+        if (confirmResult) {
+            const res = await axios.delete(`/api/profile/education/${id}`);
 
-        dispatch({
-            type: UPDATE_PROFILE,
-            payload: res.data
-        });
+            dispatch({
+                type: UPDATE_PROFILE,
+                payload: res.data
+            });
 
-        //scrollToTop();
-        //dispatch(setAlert('Education Removed', 'success'));
-        successToaster('Education Removed');
+            //scrollToTop();
+            //dispatch(setAlert('Education Removed', 'success'));
+            successToaster('Education Removed');
+        }
+
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
@@ -239,7 +248,9 @@ export const deleteEducation = (id) => async (dispatch) => {
 
 // Delete account & profile
 export const deleteAccount = () => async (dispatch) => {
-    if (window.confirm('Are you sure? This can NOT be undone!')) {
+
+    const confirmResult = await confirmDialog('Are you sure? This can NOT be undone!');
+    if (confirmResult) {
         try {
             await axios.delete('/api//profile');
 
