@@ -13,7 +13,8 @@ import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
-import Profile from './components/profile/Profile'
+import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
 //import for toaster
 import { ToastContainer } from 'react-toastify';
 
@@ -48,6 +49,7 @@ function App() {
           <Route exact path='/edit-profile' element={<PrivateRoute component={EditProfile} />} />
           <Route exact path='/add-experience' element={<PrivateRoute component={AddExperience} />} />
           <Route exact path='/add-education' element={<PrivateRoute component={AddEducation} />} />
+          <Route exact path='/posts' element={<PrivateRoute component={Posts} />} />
 
         </Routes>
         <ToastContainer />
