@@ -5,7 +5,8 @@ import {
     UPDATE_LIKES,
     DELETE_POST,
     ADD_POST,
-    GET_POST
+    GET_POST,
+    GET_POST_LOADING
 } from './types';
 
 import axios from 'axios';
@@ -119,6 +120,9 @@ export const addPost = (formData) => async (dispatch) => {
 // Get post
 export const getPost = (id) => async (dispatch) => {
     try {
+        dispatch({
+            type: GET_POST_LOADING
+        })
         const res = await axios.get(`/api/posts/${id}`);
 
         dispatch({
