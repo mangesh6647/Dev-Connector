@@ -9,16 +9,16 @@ import { addLike, removeLike, deletePost } from '../../actions/post';
 function PostItem({ addLike, removeLike, deletePost, auth,
     post: { _id, text, name, user, likes, comments, date } }) {
     return (
-        <div className="post bg-white p-1 my-1">
+        <div className="post bg-blue p-1 my-1">
             <div>
-                <a href="profile.html">
+                <Link to={`/profile/${user}`}>
                     <img
                         className="round-img"
                         src={Developer}
                         alt="No Image"
                     />
                     <h4>{name}</h4>
-                </a>
+                </Link>
             </div>
             <div>
                 <p className="my-1">
