@@ -1,4 +1,5 @@
 import {
+    POSTS_LOADING,
     GET_POSTS,
     POST_ERROR,
     UPDATE_LIKES,
@@ -13,6 +14,9 @@ import confirmDialog from '../utils/ConfirmAlert';
 
 export const getPosts = () => async (dispatch) => {
     try {
+        dispatch({
+            type: POSTS_LOADING
+        })
         const res = await axios.get('/api/posts');
 
         dispatch({
