@@ -512,6 +512,14 @@ button {
   background-color: rgb(236, 236, 229);
 }
 
+.fas.fa-thumbs-up {
+  color: black;
+}
+
+.fas.fa-thumbs-up.liked {
+  color: blue;
+}
+
 .post>div:first-child {
   text-align: center;
 }

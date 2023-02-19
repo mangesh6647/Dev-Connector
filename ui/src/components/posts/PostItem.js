@@ -15,10 +15,7 @@ function PostItem({ addLike, removeLike, deletePost, auth,
 
     const isPostLiked = () => {
         const valueExists = likes.some(item => item.user === auth.user._id);
-        console.log("valueExists", valueExists)
-        if (valueExists > -1)
-            return true
-        return false;
+        return valueExists;
     }
     return (
         <div className={auth.user.name === name ? "post bgPost bg-blue p-1 my-1" : "post bg-blue p-1 my-1"}>
@@ -41,7 +38,7 @@ function PostItem({ addLike, removeLike, deletePost, auth,
                 </p>
                 {showActions && <React.Fragment>
                     <button onClick={() => addLike(_id)} type="button" className="btn btn-light" style={buttonStyle}>
-                        <i className="fas fa-thumbs-up"></i>{' '}
+                        <i className={`fas fa-thumbs-up ${isPostLiked() ? 'liked' : ''}`}></i>{' '}
                         <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
                     </button>
                     <button type="button" onClick={() => removeLike(_id)} className="btn btn-light" style={buttonStyle}>
