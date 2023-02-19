@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from "react-moment";
@@ -12,6 +12,23 @@ function PostItem({ addLike, removeLike, deletePost, auth,
     const buttonStyle = {
         backgroundColor: auth.user.name === name ? 'rgb(236, 236, 229)' : 'white'
     }
+
+    const [liked, setLiked] = useState(false);
+    const [removeliked, setRemoveLiked] = useState(false);
+
+    const handleLike = () => {
+        setLiked(true);
+        setTimeout(() => {
+            setLiked(false);
+        }, 1000);
+    };
+
+    const handleRemoveLike = () => {
+        setRemoveLiked(true);
+        setTimeout(() => {
+            setRemoveLiked(false);
+        }, 1000);
+    };
 
     const isPostLiked = () => {
         const valueExists = likes.some(item => item.user === auth.user._id);
@@ -37,12 +54,18 @@ function PostItem({ addLike, removeLike, deletePost, auth,
                     Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
                 </p>
                 {showActions && <React.Fragment>
-                    <button onClick={() => addLike(_id)} type="button" className="btn btn-light" style={buttonStyle}>
+                    <button onClick={() => { handleLike(); addLike(_id) }} type="button"
+                        className={liked ? "liked btn btn-light" : "btn btn-light"} style={buttonStyle}>
+
                         <i className={`fas fa-thumbs-up ${isPostLiked() ? 'liked' : ''}`}></i>{' '}
+
                         <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
                     </button>
-                    <button type="button" onClick={() => removeLike(_id)} className="btn btn-light" style={buttonStyle}>
+                    <button type="button" onClick={() => { handleRemoveLike(); removeLike(_id) }}
+                        className={removeliked ? "disliked btn btn-light" : "btn btn-light"} style={buttonStyle}>
+
                         <i className="fas fa-thumbs-down"></i>
+
                     </button>
                     <Link to={`/posts/${_id}`} className="btn btn-primary">
                         Discussion {comments.length > 0 && (<span className='comment-count'>{comments.length}</span>)}
