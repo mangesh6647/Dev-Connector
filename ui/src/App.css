@@ -585,6 +585,35 @@ button.disliked {
   margin-bottom: 0.5rem;
 }
 
+.message-input {
+  position: fixed;
+  bottom: 0;
+  width: 69%;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.message-input form {
+  display: flex;
+}
+
+.message-input input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.message-input button {
+  background-color: #3a67ed;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
