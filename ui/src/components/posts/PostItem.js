@@ -13,6 +13,13 @@ function PostItem({ addLike, removeLike, deletePost, auth,
         backgroundColor: auth.user.name === name ? 'rgb(236, 236, 229)' : 'white'
     }
 
+    const isPostLiked = () => {
+        const valueExists = likes.some(item => item.user === auth.user._id);
+        console.log("valueExists", valueExists)
+        if (valueExists > -1)
+            return true
+        return false;
+    }
     return (
         <div className={auth.user.name === name ? "post bgPost bg-blue p-1 my-1" : "post bg-blue p-1 my-1"}>
             <div>
