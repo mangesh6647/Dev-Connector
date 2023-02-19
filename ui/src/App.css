@@ -508,6 +508,10 @@ button {
   align-items: center;
 }
 
+.bgPost {
+  background-color: rgb(236, 236, 229);
+}
+
 .post>div:first-child {
   text-align: center;
 }

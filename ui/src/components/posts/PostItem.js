@@ -9,7 +9,7 @@ import { addLike, removeLike, deletePost } from '../../actions/post';
 function PostItem({ addLike, removeLike, deletePost, auth,
     post: { _id, text, name, user, likes, comments, date } }) {
     return (
-        <div className="post bg-blue p-1 my-1">
+        <div className={auth.user.name === name ? "post bgPost bg-blue p-1 my-1" : "post bg-blue p-1 my-1"}>
             <div>
                 <Link to={`/profile/${user}`}>
                     <img
