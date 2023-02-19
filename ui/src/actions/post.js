@@ -166,14 +166,18 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // Delete comment
 export const deleteComment = (postId, commentId) => async (dispatch) => {
     try {
-        await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+        const confirmResult = await confirmDialog('Are you sure?');
+        if (confirmResult) {
+            await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
-        dispatch({
-            type: REMOVE_COMMENT,
-            payload: commentId
-        });
+            dispatch({
+                type: REMOVE_COMMENT,
+                payload: commentId
+            });
 
-        successToaster('Comment Removed.');
+            successToaster('Comment Removed.');
+        }
+
     } catch (err) {
         dispatch({
             type: POST_ERROR,
