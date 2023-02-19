@@ -1,11 +1,13 @@
 import {
     GET_POSTS,
     POST_ERROR,
-    UPDATE_LIKES
+    UPDATE_LIKES,
+    DELETE_POST
 } from './types';
 
 import axios from 'axios';
-import { infoToaster } from '../utils/Toaster';
+import { infoToaster, successToaster } from '../utils/Toaster';
+import confirmDialog from '../utils/ConfirmAlert';
 
 // Get posts
 
@@ -54,6 +56,29 @@ export const removeLike = (id) => async (dispatch) => {
         });
     } catch (err) {
         infoToaster(err.response.data.msg + '. Like it first.');
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+};
+
+// Delete post
+export const deletePost = (id) => async (dispatch) => {
+    try {
+        const confirmResult = await confirmDialog('Are you sure?');
+        if (confirmResult) {
+            await axios.delete(`/api/posts/${id}`);
+
+            dispatch({
+                type: DELETE_POST,
+                payload: id
+            });
+
+            successToaster('Post Removed.');
+        }
+
+    } catch (err) {
         dispatch({
             type: POST_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
