@@ -10,7 +10,7 @@ import Education from './Education';
 
 function Dashboard({ getCurrentProfile, deleteAccount, auth: { user }, profile: { profile, loading } }) {
     useEffect(() => {
-        getCurrentProfile();
+        getCurrentProfile(true);
     }, [getCurrentProfile]);
     return loading && profile === null ? <Spinner /> :
         <section className="container">

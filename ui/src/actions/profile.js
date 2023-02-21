@@ -1,13 +1,18 @@
 import axios from 'axios';
 //import { setAlert } from './alert';
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, ACCOUNT_DELETED, CLEAR_PROFILE, GET_PROFILES, GET_REPOS, NO_REPOS } from './types';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, ACCOUNT_DELETED, CLEAR_PROFILE, GET_PROFILES, GET_REPOS, NO_REPOS, GET_PROFILE_LOADING } from './types';
 //import { scrollToTop } from '../utils/scrollToTop';
 import { errorToaster, successToaster, infoToaster } from '../utils/Toaster';
 import confirmDialog from '../utils/ConfirmAlert';
 
 // Get current users profile
-export const getCurrentProfile = () => async (dispatch) => {
+export const getCurrentProfile = (loading = false) => async (dispatch) => {
     try {
+        if (loading) {
+            dispatch({
+                type: GET_PROFILE_LOADING
+            })
+        }
         const res = await axios.get('/api/profile/me');
 
         dispatch({
