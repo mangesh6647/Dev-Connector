@@ -16,6 +16,7 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
+import NotFound from './components/layout/NotFound';
 //import for toaster
 import { ToastContainer } from 'react-toastify';
 
@@ -52,6 +53,7 @@ function App() {
           <Route exact path='/add-education' element={<PrivateRoute component={AddEducation} />} />
           <Route exact path='/posts' element={<PrivateRoute component={Posts} />} />
           <Route exact path='/posts/:id' element={<PrivateRoute component={Post} />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
         <ToastContainer />
       </BrowserRouter>
