@@ -640,6 +640,21 @@ button.disliked {
 
 /* Mobile Styles */
 @media (max-width: 700px) {
+  .developer-search {
+    position: relative;
+    width: 100%;
+    left: 0px;
+    max-width: 320px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+
   .container {
     margin-top: 8rem;
   }
