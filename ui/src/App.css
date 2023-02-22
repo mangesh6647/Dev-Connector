@@ -604,6 +604,11 @@ button.disliked {
   outline: none;
   padding: 10px;
   font-size: 16px;
+
+}
+
+.message-input input::placeholder {
+  color: black;
 }
 
 .developer-search {
@@ -617,6 +622,10 @@ button.disliked {
   border-bottom: 1px solid #000;
   padding: 10px;
   outline: none;
+}
+
+.developer-search::placeholder {
+  color: black;
 }
 
 .message-input button {
