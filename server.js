@@ -1,8 +1,16 @@
+
+require("dotenv").config({
+    path:
+        process.env.NODE_ENV === "production"
+            ? "/etc/secrets/prod.env"
+            : "./dev.env",
+});
 const express = require('express');
 const connectDB = require('./config/db');
 const app = express();
 
 const path = require('path');
+
 
 connectDB();
 //Init middleware
