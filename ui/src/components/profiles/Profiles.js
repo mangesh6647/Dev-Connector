@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -10,6 +10,28 @@ function Profiles({ getProfiles, profile: { profiles, loading } }) {
     useEffect(() => {
         getProfiles();
     }, [getProfiles]);
+
+    const [searchWord, setSearchWord] = useState('')
+    // const handleKeyDown = (event) => {
+    //     if (event.key === 'Enter') {
+    //         console.log("sdfgdfg", searchWord);
+    //         searchWord.trim();
+    //         // let filteredValue;
+    //         // if (searchWord !== '') {
+    //         //     //setFilteredProfile(filteredValue)
+    //         // }
+    //     }
+    // }
+    let filteredValue = [];
+    if (searchWord.length > 0) {
+        filteredValue = profiles.filter((profile) => {
+            const name = profile.user.name.toLowerCase();
+            return name.includes(searchWord.toLowerCase())
+        })
+    }
+    else {
+        filteredValue = profiles;
+    }
     return (
         <React.Fragment>
             {loading ? <Spinner /> : <section className="container">
@@ -18,9 +40,11 @@ function Profiles({ getProfiles, profile: { profiles, loading } }) {
                     <i className="fab fa-connectdevelop" /> Browse and connect with
                     developers
                 </p>
+                <input type="text" placeholder="Search a developer..." className='developer-search'
+                    onChange={event => setSearchWord(event.target.value)} />
                 <div className="profiles">
-                    {profiles.length > 0 ? (
-                        profiles.map((profile) => (
+                    {filteredValue.length > 0 ? (
+                        filteredValue.map((profile) => (
                             <ProfileItem key={profile._id} profile={profile} />
                         ))
                     ) : (
@@ -42,3 +66,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getProfiles })(Profiles);
+

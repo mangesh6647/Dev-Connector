@@ -600,8 +600,23 @@ button.disliked {
 .message-input input {
   flex-grow: 1;
   border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
   padding: 10px;
   font-size: 16px;
+}
+
+.developer-search {
+  position: absolute;
+  left: 70%;
+  top: 15%;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 5%;
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 10px;
+  outline: none;
 }
 
 .message-input button {
